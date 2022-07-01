@@ -4,14 +4,16 @@ from PyQt5 import uic
 
 #UI파일 연결
 #단, UI파일은 Python 코드 파일과 같은 디렉토리에 위치해야한다.
-form_class = uic.loadUiType("untitled.ui")[0]
+form_class = uic.loadUiType("mainUi.ui")[0]
 
 #화면을 띄우는데 사용되는 Class 선언
 class WindowClass(QMainWindow, form_class) :
+
+
     def __init__(self) :
         super().__init__()
         self.setupUi(self)
-        f  = open('./sp100.txt','r')
+        f  = open('./setData.txt','r')
         data = f.readline().replace("\n","")
         self.note.setPlainText(data[data.find("=")+1:])
         data = f.readline().replace("\n","")
@@ -127,6 +129,7 @@ class WindowClass(QMainWindow, form_class) :
         if self.install_print_1_mono.isChecked() :  
             print("default_print_1_mono Checked")
             i=i+1
+        
         if self.install_print_2_mono.isChecked() : 
             print("default_print_2_mono Checked")
             i=i+1
@@ -154,12 +157,21 @@ class WindowClass(QMainWindow, form_class) :
         if self.install_print_5_color.isChecked() : 
             print("default_print_5_color Checked")
             i=i+1
+            with open('./setData.txt','w',encoding='UTF-8') as f:
+                print("dd")
+            f  = open('/driver/ASINDOH D450 Color/KMoprCnf_BACKUP.ini','r')
+            print(f)
         if i<1:
             print("non install")
+
+
+
+    
+
     def save_btn_function(self) :
         print("save")
-       
-        with open('sp100.txt','w',encoding='UTF-8') as f:
+
+        with open('setData.txt','w',encoding='UTF-8') as f:
             line1=self.note.toPlainText()
             if self.default_printer_del_o.isChecked() == True:
                 line2 = "0"

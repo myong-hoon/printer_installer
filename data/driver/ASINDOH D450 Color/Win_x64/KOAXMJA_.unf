@@ -1,0 +1,62 @@
+;
+; SINDOH D450/CM Series PCL Driver UNF-File for Win
+;
+; Copyright (C) 2003 KONICA MINOLTA, INC.
+
+[Version]
+Signature="$Windows NT$"
+Provider=%KM%
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+Class=Printer
+CatalogFile=KOAXMJA_.cat
+DriverVer=07/01/2019,2.0.13.2
+
+[DriverInfo]
+DriverName1=SINDOH D450/CM Series PCL
+DriverCode=0012
+
+[Uninstall.DriverName1]
+DelReg=Environment_Reg.DriverName1
+DelFiles=KOAXM_COPY,PRINT_MONITOR
+
+[Environment_Reg.DriverName1]
+HKLM,"System\CurrentControlSet\Control\Print\Printers","StartOnBoot"
+HKCU,"SoftWare\SINDOH\SINDOH D450/CM Series PCL"
+
+[KOAXM_COPY]
+KOAXMJAB.dll,,,1
+KOAXMJAC.dll,,,1
+KOAXMJAD.dll,,,1
+KOAXMJAE.dll,,,1
+KOAXMJAF.dll,,,1
+KOAXMJAG.dll,,,1
+KOAXMJAJ.dll,,,1
+KOAXMJAM.dll,,,1
+KOAXMJAN.dll,,,1
+KOAXMJAO.dll,,,1
+KOAXMJAR.dll,,,1
+KOAXMJAS.dll,,,1
+KOAXMJAU.dll,,,1
+KOAXMJAW.dll,,,1
+KOAXMJAX.dll,,,1
+KOAXMJAC.kpd,,,1
+KOAXMJAD.kpd,,,1
+KOAXMJAM.kpd,,,1
+KOAXMJA_.kpd,,,1
+KOAXMJA_.chm,,,1
+KOAXMJA_.unf,,,1
+KOAXMJAA.kmp,,,1
+KOAXMJAB.kmp,,,1
+KOAXMJAC.kmp,,,1
+KOAXMJAD.kmp,,,1
+
+[PRINT_MONITOR]
+KOAXMJAL.dll,,,1
+
+[DestinationDirs]
+DefaultDestDir=66000
+PRINT_MONITOR=66002
+
+[Strings]
+KM="SINDOH"
+DiskName="SINDOH D450/CM Series Driver Disk"

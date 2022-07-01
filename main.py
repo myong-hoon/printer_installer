@@ -9,6 +9,7 @@ form_class = uic.loadUiType("mainUi.ui")[0]
 #화면을 띄우는데 사용되는 Class 선언
 class WindowClass(QMainWindow, form_class) :
 
+    
 
     def __init__(self) :
         super().__init__()
@@ -159,8 +160,19 @@ class WindowClass(QMainWindow, form_class) :
             i=i+1
             with open('./setData.txt','w',encoding='UTF-8') as f:
                 print("dd")
-            f  = open('/driver/ASINDOH D450 Color/KMoprCnf_BACKUP.ini','r')
-            print(f)
+            f  = open('./data/driver/ASINDOH D450 Color/KMoprCnf_BACKUP.ini','r')
+            listf=f.readlines()
+            temp=[]
+            j=0
+            for io in listf:
+                if io[:io.find("=")] == "PortName":
+                    temp.append('PortName=')
+                    print('portname')
+                    j=j+1
+                else:
+                    temp.append(io.replace("\n",""))
+                    j=j+1
+            print(temp)
         if i<1:
             print("non install")
 

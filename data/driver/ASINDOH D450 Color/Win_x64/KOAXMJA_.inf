@@ -1,0 +1,116 @@
+;
+; SINDOH D450/CM Series PCL Driver INF-File for Win x64
+;
+; Copyright (C) 2003 KONICA MINOLTA, INC.
+
+[Version]
+Signature="$Windows NT$"
+Provider=%KM%
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+Class=Printer
+DriverIsolation=2
+CatalogFile=KOAXMJA_.cat
+DriverVer=07/01/2019,2.0.13.2
+
+[Manufacturer]
+%KM%=Generic,NTamd64,NTamd64.6.0
+
+[Generic.NTamd64]
+"SINDOH D450/CM Series PCL" = KOAXMJAG.dll.NTamd64, USBPRINT\Generic36C-0iSeriesAF9B, Generic36C-0iSeriesAF9B
+
+[Generic.NTamd64.6.0]
+"SINDOH D450/CM Series PCL" = KOAXMJAG.D450Series.NTamd64.6.0, USBPRINT\Generic36C-0iSeriesAF9B, Generic36C-0iSeriesAF9B
+
+[KOAXMJAG.dll.NTamd64]
+CopyFiles=KOAXM_COPY,PRINT_MONITOR
+DataSection=KOAXM_DATA
+HelpFile=KOAXMJA_.chm
+
+[KOAXMJAG.D450Series.NTamd64.6.0]
+CopyFiles=KOAXM_COPY,PRINT_MONITOR
+DataSection=KOAXM_DATA
+LanguageMonitor="D450/CM Series PCL Language Monitor,KOAXMJAL.dll"
+HelpFile=KOAXMJA_.chm
+
+[PrinterPackageInstallation.amd64]
+PackageAware=TRUE
+
+[KOAXM_COPY]
+KOAXMJAB.dll
+KOAXMJAC.dll
+KOAXMJAD.dll
+KOAXMJAE.dll
+KOAXMJAF.dll
+KOAXMJAG.dll
+KOAXMJAJ.dll
+KOAXMJAM.dll
+KOAXMJAN.dll
+KOAXMJAO.dll
+KOAXMJAR.dll
+KOAXMJAS.dll
+KOAXMJAU.dll
+KOAXMJAW.dll
+KOAXMJAX.dll
+KOAXMJAC.kpd
+KOAXMJAD.kpd
+KOAXMJAM.kpd
+KOAXMJA_.kpd
+KOAXMJA_.chm
+KOAXMJA_.unf
+KOAXMJAA.kmp
+KOAXMJAB.kmp
+KOAXMJAC.kmp
+KOAXMJAD.kmp
+KOBDrvAPIIF.dll
+KOBDrvAPIIF32.dll
+KOBDrvAPIW64.exe
+
+[KOAXM_DATA]
+DriverFile=KOAXMJAG.dll
+ConfigFile=KOAXMJAC.dll
+DataFile=KOAXMJAG.dll
+
+[PRINT_MONITOR]
+KOAXMJAL.dll
+
+[DestinationDirs]
+DefaultDestDir=66000
+PRINT_MONITOR=66002
+
+[SourceDisksNames.amd64]
+9=%DiskName%,,
+
+[SourceDisksFiles.amd64]
+KOAXMJAB.dll = 9
+KOAXMJAC.dll = 9
+KOAXMJAD.dll = 9
+KOAXMJAE.dll = 9
+KOAXMJAF.dll = 9
+KOAXMJAG.dll = 9
+KOAXMJAJ.dll = 9
+KOAXMJAL.dll = 9
+KOAXMJAM.dll = 9
+KOAXMJAN.dll = 9
+KOAXMJAO.dll = 9
+KOAXMJAR.dll = 9
+KOAXMJAS.dll = 9
+KOAXMJAU.dll = 9
+KOAXMJAW.dll = 9
+KOAXMJAX.dll = 9
+KOAXMJAC.kpd = 9
+KOAXMJAD.kpd = 9
+KOAXMJAM.kpd = 9
+KOAXMJA_.kpd = 9
+KOAXMJA_.chm = 9
+KOAXMJA_.unf = 9
+KOAXMJAA.kmp = 9
+KOAXMJAB.kmp = 9
+KOAXMJAC.kmp = 9
+KOAXMJAD.kmp = 9
+KOBDrvAPIIF.dll = 9
+KOBDrvAPIIF32.dll = 9
+KOBDrvAPIW64.exe = 9
+
+[Strings]
+KM="SINDOH"
+DiskName="SINDOH D450/CM Series Driver Disk"

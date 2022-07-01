@@ -1,6 +1,8 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
+import subprocess
+import os
 
 #UI파일 연결
 #단, UI파일은 Python 코드 파일과 같은 디렉토리에 위치해야한다.
@@ -168,7 +170,7 @@ class WindowClass(QMainWindow, form_class) :
                     print5_ip=dataValue
                     self.print_ip_5.setText(print5_ip)
 
-
+        print(os.listdir())
         super().__init__()
         self.setupUi(self)
         setting_read()
@@ -178,7 +180,53 @@ class WindowClass(QMainWindow, form_class) :
 
     def start_btn_function(self) :
         
-        
+        def write(num,color):
+            temp  = open('./data/driver/ASINDOH D450 Color/KMoprCnf_BACKUP.ini','r').readlines()
+            if num == 1:
+                printname=print1_name
+                printport=print1_ip
+            elif num == 2:
+                printname=print2_name
+                printport=print2_ip
+            elif num == 3:
+                printname=print3_name
+                printport=print3_ip
+            elif num == 4:
+                printname=print4_name
+                printport=print4_ip
+            elif num == 5:
+                printname=print5_name
+                printport=print5_ip
+
+            if color == 'mono':
+                printcolor = 1
+            elif color == 'color':
+                printcolor = 0
+            new_temp = []
+            for i in temp:
+                temp_data = i.replace("\n","")
+                dataName = temp_data[:temp_data.find("=")]
+                dataValue= temp_data[temp_data.find("=")+1:]
+                if temp_data.find("=") < 0:
+                    new_temp.append(temp_data)
+                else:
+                    if dataName == "Name":
+                        new_temp.append(dataName+'='+printname)
+                    elif dataName == "PropName":
+                        new_temp.append(dataName+'='+printname)
+                    elif dataName == "PortName":
+                        new_temp.append(dataName+'='+printport)
+                    else:    
+                        new_temp.append(dataName+'='+dataValue)
+            print(new_temp)
+                
+                
+
+            # with open('setData.txt','w',encoding='UTF-8') as f:
+            #     temp  = open('./data/driver/ASINDOH D450 Color/KMoprCnf_BACKUP.ini','r').readlines
+            #     print(temp)
+
+
         def loop():
             global installPrintCount
             i=0
@@ -309,27 +357,48 @@ class WindowClass(QMainWindow, form_class) :
             print5_ip= self.print_ip_5.text()
 
         def install():
+            path=os.path.join(os.getcwd(), 'data/driver/pkginst2.exe')
             for i in installPrintCount:
                 if i == 'installPrint_1_mono':
                     print(print1_name+' MONO',print1_ip)
+                    write(1,"mono")
+                    subprocess.run(path)
                 elif i == 'installPrint_2_mono':
                     print(print2_name+' MONO',print2_ip)
+                    write(2,"mono")
+                    subprocess.run(path)
                 elif i == 'installPrint_3_mono':
                     print(print3_name+' MONO',print3_ip)
+                    write(3,"mono")
+                    subprocess.run(path)
                 elif i == 'installPrint_4_mono':
                     print(print4_name+' MONO',print4_ip)
+                    write(4,"mono")
+                    subprocess.run(path)
                 elif i == 'installPrint_5_mono':
                     print(print5_name+' MONO',print5_ip)
+                    write(5,"mono")
+                    subprocess.run(path)
                 elif i == 'installPrint_1_color':
                     print(print1_name+' COLOR',print1_ip)
+                    write(1,"color")
+                    subprocess.run(path)
                 elif i == 'installPrint_2_color':
                     print(print2_name+' COLOR',print2_ip)
+                    write(2,"color")
+                    subprocess.run(path)
                 elif i == 'installPrint_3_color':
                     print(print3_name+' COLOR',print3_ip)
+                    write(3,"color")
+                    subprocess.run(path)
                 elif i == 'installPrint_4_color':
                     print(print4_name+' COLOR',print4_ip)
+                    write(4,"color")
+                    subprocess.run(path)
                 elif i == 'installPrint_5_color':
                     print(print5_name+' COLOR',print5_ip)
+                    write(5,"color")
+                    subprocess.run(path)
 
         readData()
         loop()

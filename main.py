@@ -180,8 +180,8 @@ class WindowClass(QMainWindow, form_class) :
         
         
         def loop():
-            i=0
             global installPrintCount
+            i=0
             installPrintCount = []
             if self.installPrint_1_mono.isChecked() :  
                 i=i+1
@@ -215,13 +215,127 @@ class WindowClass(QMainWindow, form_class) :
                 i=i+1
                 installPrintCount.append('installPrint_5_color')
             if i==0:
-                print("non install")
-            
+                installPrintCount.append('non_install')
 
-        
+        def readData():
+            global text
+            global defaultPrintDel
+            global defaultPrint
+            global print1_mono
+            global print1_color
+            global print1_name 
+            global print1_ip
+            global print2_mono
+            global print2_color
+            global print2_name
+            global print2_ip
+            global print3_mono
+            global print3_color
+            global print3_name
+            global print3_ip
+            global print4_mono
+            global print4_color
+            global print4_name
+            global print4_ip
+            global print5_mono
+            global print5_color
+            global print5_name
+            global print5_ip
+            text=self.note.toPlainText()
+            if self.defaultPrintDel_o.isChecked() == True:
+                defaultPrintDel = "0"
+            else:
+                defaultPrintDel = "1"
+            if self.defaultPrint_1_mono.isChecked() :  defaultPrint="1"
+            elif self.defaultPrint_2_mono.isChecked() : defaultPrint="3"
+            elif self.defaultPrint_3_mono.isChecked() : defaultPrint="5"
+            elif self.defaultPrint_4_mono.isChecked() : defaultPrint="7"
+            elif self.defaultPrint_5_mono.isChecked() : defaultPrint="9"
+            elif self.defaultPrint_1_color.isChecked() : defaultPrint="2"
+            elif self.defaultPrint_2_color.isChecked() : defaultPrint="4"
+            elif self.defaultPrint_3_color.isChecked() : defaultPrint="6"
+            elif self.defaultPrint_4_color.isChecked() : defaultPrint="8"
+            elif self.defaultPrint_5_color.isChecked() : defaultPrint="10"
+            elif self.defaultPrint_non.isChecked() : defaultPrint="0"
+            if self.installPrint_1_mono.isChecked() == True:
+                print1_mono = "1"
+            else:
+                print1_mono = "0"
+            if self.installPrint_1_color.isChecked() == True:
+                print1_color = "1"
+            else:
+                print1_color = "0"
+            print1_name= self.print_name_1.text()
+            print1_ip= self.print_ip_1.text()
+            if self.installPrint_2_mono.isChecked() == True:
+                print2_mono = "1"
+            else:
+                print2_mono = "0"
+            if self.installPrint_2_color.isChecked() == True:
+                print2_color = "1"
+            else:
+                print2_color = "0"
+            print2_name= self.print_name_2.text()
+            print2_ip= self.print_ip_2.text()
+            if self.installPrint_3_mono.isChecked() == True:
+                print3_mono = "1"
+            else:
+                print3_mono = "0"
+            if self.installPrint_3_color.isChecked() == True:
+                print3_color = "1"
+            else:
+                print3_color = "0"
+            print3_name= self.print_name_3.text()
+            print3_ip= self.print_ip_3.text()
+            if self.installPrint_4_mono.isChecked() == True:
+                print4_mono = "1"
+            else:
+                print4_mono = "0"
+            if self.installPrint_4_color.isChecked() == True:
+                print4_color = "1"
+            else:
+                print4_color = "0"
+            print4_name= self.print_name_4.text()
+            print4_ip= self.print_ip_4.text()
+            if self.installPrint_5_mono.isChecked() == True:
+                print5_mono = "1"
+            else:
+                print5_mono = "0"
+            if self.installPrint_5_color.isChecked() == True:
+                print5_color = "1"
+            else:
+                print5_color = "0"
+            print5_name= self.print_name_5.text()
+            print5_ip= self.print_ip_5.text()
+
+        def install():
+            for i in installPrintCount:
+                if i == 'installPrint_1_mono':
+                    print(print1_name+' MONO',print1_ip)
+                elif i == 'installPrint_2_mono':
+                    print(print2_name+' MONO',print2_ip)
+                elif i == 'installPrint_3_mono':
+                    print(print3_name+' MONO',print3_ip)
+                elif i == 'installPrint_4_mono':
+                    print(print4_name+' MONO',print4_ip)
+                elif i == 'installPrint_5_mono':
+                    print(print5_name+' MONO',print5_ip)
+                elif i == 'installPrint_1_color':
+                    print(print1_name+' COLOR',print1_ip)
+                elif i == 'installPrint_2_color':
+                    print(print2_name+' COLOR',print2_ip)
+                elif i == 'installPrint_3_color':
+                    print(print3_name+' COLOR',print3_ip)
+                elif i == 'installPrint_4_color':
+                    print(print4_name+' COLOR',print4_ip)
+                elif i == 'installPrint_5_color':
+                    print(print5_name+' COLOR',print5_ip)
+
+        readData()
         loop()
+        install()
         
-        print(installPrintCount)
+        # install(installPrintCount)
         # with open('./setData.txt','w',encoding='UTF-8') as f:
         #     print("dd")
         # f  = open('./data/driver/ASINDOH D450 Color/KMoprCnf_BACKUP.ini','r')

@@ -92,7 +92,7 @@ p, li { white-space: pre-wrap; }
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QRadioButton" name="default_printer_del_o">
+           <widget class="QRadioButton" name="defaultPrintDel_o">
             <property name="text">
              <string>O</string>
             </property>
@@ -102,7 +102,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="default_printer_del_x">
+           <widget class="QRadioButton" name="defaultPrintDel_x">
             <property name="text">
              <string>X</string>
             </property>
@@ -192,7 +192,7 @@ p, li { white-space: pre-wrap; }
           <number>0</number>
          </property>
          <item>
-          <widget class="QRadioButton" name="default_print_non">
+          <widget class="QRadioButton" name="defaultPrint_non">
            <property name="font">
             <font>
              <pointsize>10</pointsize>
@@ -444,7 +444,7 @@ p, li { white-space: pre-wrap; }
           <number>0</number>
          </property>
          <item>
-          <widget class="QRadioButton" name="default_print_4_mono">
+          <widget class="QRadioButton" name="defaultPrint_4_mono">
            <property name="text">
             <string>Mono</string>
            </property>
@@ -454,7 +454,7 @@ p, li { white-space: pre-wrap; }
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="default_print_4_color">
+          <widget class="QRadioButton" name="defaultPrint_4_color">
            <property name="text">
             <string>Color</string>
            </property>
@@ -494,7 +494,7 @@ p, li { white-space: pre-wrap; }
           <number>0</number>
          </property>
          <item>
-          <widget class="QRadioButton" name="default_print_5_mono">
+          <widget class="QRadioButton" name="defaultPrint_5_mono">
            <property name="text">
             <string>Mono</string>
            </property>
@@ -504,7 +504,7 @@ p, li { white-space: pre-wrap; }
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="default_print_5_color">
+          <widget class="QRadioButton" name="defaultPrint_5_color">
            <property name="text">
             <string>Color</string>
            </property>
@@ -538,14 +538,14 @@ p, li { white-space: pre-wrap; }
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="install_print_4_mono">
+          <widget class="QCheckBox" name="installPrint_4_mono">
            <property name="text">
             <string>Mono</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="install_print_4_color">
+          <widget class="QCheckBox" name="installPrint_4_color">
            <property name="text">
             <string>Color</string>
            </property>
@@ -576,14 +576,14 @@ p, li { white-space: pre-wrap; }
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="install_print_3_mono">
+          <widget class="QCheckBox" name="installPrint_3_mono">
            <property name="text">
             <string>Mono</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="install_print_3_color">
+          <widget class="QCheckBox" name="installPrint_3_color">
            <property name="text">
             <string>Color</string>
            </property>
@@ -688,14 +688,14 @@ p, li { white-space: pre-wrap; }
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="install_print_5_mono">
+          <widget class="QCheckBox" name="installPrint_5_mono">
            <property name="text">
             <string>Mono</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="install_print_5_color">
+          <widget class="QCheckBox" name="installPrint_5_color">
            <property name="text">
             <string>Color</string>
            </property>
@@ -732,7 +732,7 @@ p, li { white-space: pre-wrap; }
           <number>0</number>
          </property>
          <item>
-          <widget class="QRadioButton" name="default_print_1_mono">
+          <widget class="QRadioButton" name="defaultPrint_1_mono">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -748,7 +748,7 @@ p, li { white-space: pre-wrap; }
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="default_print_1_color">
+          <widget class="QRadioButton" name="defaultPrint_1_color">
            <property name="text">
             <string>Color</string>
            </property>
@@ -863,14 +863,14 @@ p, li { white-space: pre-wrap; }
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="install_print_2_mono">
+          <widget class="QCheckBox" name="installPrint_2_mono">
            <property name="text">
             <string>Mono</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="install_print_2_color">
+          <widget class="QCheckBox" name="installPrint_2_color">
            <property name="text">
             <string>Color</string>
            </property>
@@ -908,7 +908,7 @@ p, li { white-space: pre-wrap; }
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="install_print_1_mono">
+          <widget class="QCheckBox" name="installPrint_1_mono">
            <property name="text">
             <string>Mono</string>
            </property>
@@ -924,7 +924,7 @@ p, li { white-space: pre-wrap; }
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="install_print_1_color">
+          <widget class="QCheckBox" name="installPrint_1_color">
            <property name="text">
             <string>Color</string>
            </property>
@@ -998,7 +998,7 @@ p, li { white-space: pre-wrap; }
           <number>0</number>
          </property>
          <item>
-          <widget class="QRadioButton" name="default_print_3_mono">
+          <widget class="QRadioButton" name="defaultPrint_3_mono">
            <property name="text">
             <string>Mono</string>
            </property>
@@ -1008,7 +1008,7 @@ p, li { white-space: pre-wrap; }
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="default_print_3_color">
+          <widget class="QRadioButton" name="defaultPrint_3_color">
            <property name="text">
             <string>Color</string>
            </property>
@@ -1048,7 +1048,7 @@ p, li { white-space: pre-wrap; }
           <number>0</number>
          </property>
          <item>
-          <widget class="QRadioButton" name="default_print_2_mono">
+          <widget class="QRadioButton" name="defaultPrint_2_mono">
            <property name="text">
             <string>Mono</string>
            </property>
@@ -1058,7 +1058,7 @@ p, li { white-space: pre-wrap; }
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="default_print_2_color">
+          <widget class="QRadioButton" name="defaultPrint_2_color">
            <property name="text">
             <string>Color</string>
            </property>
@@ -1163,7 +1163,7 @@ p, li { white-space: pre-wrap; }
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup"/>
   <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup"/>
  </buttongroups>
 </ui>

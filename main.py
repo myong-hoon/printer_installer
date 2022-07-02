@@ -1,8 +1,8 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
-import subprocess
 import os
+import shutil
 
 #UI파일 연결
 #단, UI파일은 Python 코드 파일과 같은 디렉토리에 위치해야한다.
@@ -35,6 +35,7 @@ class WindowClass(QMainWindow, form_class) :
     global print5_name
     global print5_ip
     global installPrintCount
+    global printname
 
     def __init__(self) :
         def setting_read():
@@ -179,29 +180,27 @@ class WindowClass(QMainWindow, form_class) :
         
 
     def start_btn_function(self) :
-        
+        global printname
+
         def write(num,color):
-            temp  = open('./data/driver/ASINDOH D450 Color/KMoprCnf_BACKUP.ini','r').readlines()
+            global printname
+            temp  = open('./data/driver/ASINDOH D450 Color/KMoprCnf_BACKUP.ini','r',encoding='UTF-8').readlines()
             if num == 1:
-                printname=print1_name
+                printname=print1_name+' '+color
                 printport=print1_ip
             elif num == 2:
-                printname=print2_name
+                printname=print2_name+' '+color
                 printport=print2_ip
             elif num == 3:
-                printname=print3_name
+                printname=print3_name+' '+color
                 printport=print3_ip
             elif num == 4:
-                printname=print4_name
+                printname=print4_name+' '+color
                 printport=print4_ip
             elif num == 5:
-                printname=print5_name
+                printname=print5_name+' '+color
                 printport=print5_ip
-
-            if color == 'mono':
-                printcolor = 1
-            elif color == 'color':
-                printcolor = 0
+            
             new_temp = []
             for i in temp:
                 temp_data = i.replace("\n","")
@@ -211,20 +210,58 @@ class WindowClass(QMainWindow, form_class) :
                     new_temp.append(temp_data)
                 else:
                     if dataName == "Name":
-                        new_temp.append(dataName+'='+printname)
-                    elif dataName == "PropName":
-                        new_temp.append(dataName+'='+printname)
+                        if dataValue == "SINDOH D450/CM Series PCL":
+                            new_temp.append(dataName+'='+dataValue)
+                        else:
+                            new_temp.append(dataName+'='+printname)
+                    
                     elif dataName == "PortName":
                         new_temp.append(dataName+'='+printport)
                     else:    
                         new_temp.append(dataName+'='+dataValue)
-            print(new_temp)
-                
-                
 
-            # with open('setData.txt','w',encoding='UTF-8') as f:
-            #     temp  = open('./data/driver/ASINDOH D450 Color/KMoprCnf_BACKUP.ini','r').readlines
-            #     print(temp)
+            with open(r'./data/driver/ASINDOH D450 Color/KMoprCnf.ini','w',encoding='UTF-8') as f:
+                for data in new_temp:
+                    f.writelines(data+'\n') 
+
+
+            temp  = open('./data/driver/Lang/D450_color_backup.pck','r',encoding='CP949').readlines()
+            new_temp = []
+            for i in temp:
+                temp_data = i.replace("\n","")
+                dataName = temp_data[:temp_data.find("=")]
+                dataValue= temp_data[temp_data.find("=")+1:]
+                if temp_data.find("=") < 0:
+                    new_temp.append(temp_data)
+                else:
+                    if dataName == "Operation0":
+                        new_temp.append(dataName+'=A :'+printname)
+                    else:    
+                        new_temp.append(dataName+'='+dataValue)
+            with open(r'./data/driver/D450_color.pck','w',encoding='UTF-8') as f:
+                for data in new_temp:
+                    f.writelines(data+'\n') 
+            os.remove(os.path.join(os.getcwd(), "data/driver/ASINDOH D450 Color/KMprtPrp.dat"))
+            if color == "mono" :
+                shutil.copyfile(os.path.join(os.getcwd(), "data/driver/ASINDOH D450 Color/mono/KMprtPrp.dat"),os.path.join(os.getcwd(), "data/driver/ASINDOH D450 Color/KMprtPrp.dat"))
+            else:
+                shutil.copyfile(os.path.join(os.getcwd(), "data/driver/ASINDOH D450 Color/color/KMprtPrp.dat"),os.path.join(os.getcwd(), "data/driver/ASINDOH D450 Color/KMprtPrp.dat"))
+           
+            # for i in temp:
+            #     temp_data = i.replace("\n","")
+            #     dataName = temp_data[:temp_data.find("=")]
+            #     dataValue= temp_data[temp_data.find("=")+1:]
+            #     if temp_data.find("=") < 0:
+            #         new_temp.append(temp_data)
+            #     else:
+            #         if dataName == "Operation0":
+            #             new_temp.append(dataName+'=A :'+printname)
+            #         else:    
+            #             new_temp.append(dataName+'='+dataValue)
+            # with open(r'./data/driver/ASINDOH D450 Color/KMprtPrp.dat','w',encoding='UTF-8') as f:
+            #     for data in new_temp:
+            #         f.writelines(data+'\n')
+
 
 
         def loop():
@@ -289,6 +326,7 @@ class WindowClass(QMainWindow, form_class) :
             global print5_color
             global print5_name
             global print5_ip
+            global printname
             text=self.note.toPlainText()
             if self.defaultPrintDel_o.isChecked() == True:
                 defaultPrintDel = "0"
@@ -357,48 +395,80 @@ class WindowClass(QMainWindow, form_class) :
             print5_ip= self.print_ip_5.text()
 
         def install():
-            path=os.path.join(os.getcwd(), 'data/driver/pkginst2.exe')
+            path=os.path.join(os.getcwd(), 'data\driver\execPkg.exe')
             for i in installPrintCount:
+                
                 if i == 'installPrint_1_mono':
                     print(print1_name+' MONO',print1_ip)
                     write(1,"mono")
-                    subprocess.run(path)
+                    fdName="data/driver/A"+printname
+                    os.rename(os.path.join(os.getcwd(), 'data/driver/ASINDOH D450 Color'),os.path.join(os.getcwd(),fdName))
+                    os.system(path)
+                    os.rename(os.path.join(os.getcwd(), fdName),os.path.join(os.getcwd(),'data/driver/ASINDOH D450 Color'))
                 elif i == 'installPrint_2_mono':
                     print(print2_name+' MONO',print2_ip)
                     write(2,"mono")
-                    subprocess.run(path)
+                    fdName="data/driver/A"+printname
+                    os.rename(os.path.join(os.getcwd(), 'data/driver/ASINDOH D450 Color'),os.path.join(os.getcwd(),fdName))
+                    os.system(path)
+                    os.rename(os.path.join(os.getcwd(), fdName),os.path.join(os.getcwd(),'data/driver/ASINDOH D450 Color'))
                 elif i == 'installPrint_3_mono':
                     print(print3_name+' MONO',print3_ip)
                     write(3,"mono")
-                    subprocess.run(path)
+                    fdName="data/driver/A"+printname
+                    os.rename(os.path.join(os.getcwd(), 'data/driver/ASINDOH D450 Color'),os.path.join(os.getcwd(),fdName))
+                    os.system(path)
+                    os.rename(os.path.join(os.getcwd(), fdName),os.path.join(os.getcwd(),'data/driver/ASINDOH D450 Color'))
                 elif i == 'installPrint_4_mono':
                     print(print4_name+' MONO',print4_ip)
                     write(4,"mono")
-                    subprocess.run(path)
+                    fdName="data/driver/A"+printname
+                    os.rename(os.path.join(os.getcwd(), 'data/driver/ASINDOH D450 Color'),os.path.join(os.getcwd(),fdName))
+                    os.system(path)
+                    os.rename(os.path.join(os.getcwd(), fdName),os.path.join(os.getcwd(),'data/driver/ASINDOH D450 Color'))
                 elif i == 'installPrint_5_mono':
                     print(print5_name+' MONO',print5_ip)
                     write(5,"mono")
-                    subprocess.run(path)
+                    fdName="data/driver/A"+printname
+                    os.rename(os.path.join(os.getcwd(), 'data/driver/ASINDOH D450 Color'),os.path.join(os.getcwd(),fdName))
+                    os.system(path)
+                    os.rename(os.path.join(os.getcwd(), fdName),os.path.join(os.getcwd(),'data/driver/ASINDOH D450 Color'))
                 elif i == 'installPrint_1_color':
                     print(print1_name+' COLOR',print1_ip)
                     write(1,"color")
-                    subprocess.run(path)
+                    fdName="data/driver/A"+printname
+                    os.rename(os.path.join(os.getcwd(), 'data/driver/ASINDOH D450 Color'),os.path.join(os.getcwd(),fdName))
+                    os.system(path)
+                    os.rename(os.path.join(os.getcwd(), fdName),os.path.join(os.getcwd(),'data/driver/ASINDOH D450 Color'))
                 elif i == 'installPrint_2_color':
                     print(print2_name+' COLOR',print2_ip)
                     write(2,"color")
-                    subprocess.run(path)
+                    fdName="data/driver/A"+printname
+                    os.rename(os.path.join(os.getcwd(), 'data/driver/ASINDOH D450 Color'),os.path.join(os.getcwd(),fdName))
+                    os.system(path)
+                    os.rename(os.path.join(os.getcwd(), fdName),os.path.join(os.getcwd(),'data/driver/ASINDOH D450 Color'))
                 elif i == 'installPrint_3_color':
                     print(print3_name+' COLOR',print3_ip)
                     write(3,"color")
-                    subprocess.run(path)
+                    fdName="data/driver/A"+printname
+                    os.rename(os.path.join(os.getcwd(), 'data/driver/ASINDOH D450 Color'),os.path.join(os.getcwd(),fdName))
+                    os.system(path)
+                    os.rename(os.path.join(os.getcwd(), fdName),os.path.join(os.getcwd(),'data/driver/ASINDOH D450 Color'))
                 elif i == 'installPrint_4_color':
                     print(print4_name+' COLOR',print4_ip)
                     write(4,"color")
-                    subprocess.run(path)
+                    fdName="data/driver/A"+printname
+                    os.rename(os.path.join(os.getcwd(), 'data/driver/ASINDOH D450 Color'),os.path.join(os.getcwd(),fdName))
+                    os.system(path)
+                    os.rename(os.path.join(os.getcwd(), fdName),os.path.join(os.getcwd(),'data/driver/ASINDOH D450 Color'))
                 elif i == 'installPrint_5_color':
                     print(print5_name+' COLOR',print5_ip)
                     write(5,"color")
-                    subprocess.run(path)
+                    fdName="data/driver/A"+printname
+                    os.rename(os.path.join(os.getcwd(), 'data/driver/ASINDOH D450 Color'),os.path.join(os.getcwd(),fdName))
+                    os.system(path)
+                    os.rename(os.path.join(os.getcwd(), fdName),os.path.join(os.getcwd(),'data/driver/ASINDOH D450 Color'))
+                    
 
         readData()
         loop()

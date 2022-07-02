@@ -1,5 +1,5 @@
 [Package]
-Comment=¿ø»ö¿ì¼±,¹®¼­
+Comment=ì›ìƒ‰ìš°ì„ ,ë¬¸ì„œ
 Size=1
 IndividualSettingFile=C:\Users\hyhoon\Documents\MFP-Printer Utility\Driver Packaging Utility\individualset.csv
 LogPath=
@@ -9,4 +9,4 @@ IndividualSettingUserName=
 SilentMode=0
 SwitchUserWhenExecutingPackage=0
 [Operations]
-Operation0=A :SINDOH D450 Color
+Operation0=A :1er color
